@@ -8,30 +8,38 @@ import com.minux.monitoring.feature.cryptos.impl.wallets.presentation.ui.model.W
 
 internal class WalletsUiStatePreviewParameterProvider : PreviewParameterProvider<WalletsUiState> {
     private val cryptosUiState = CryptosUiStatePreviewParameterProvider().values.first()
+    private val wallets = listOf(
+        WalletItemModel(
+            id = "awdd",
+            name = "My Wallet",
+            address = "awodimhiuhiuhiuhiuhwidm",
+            cryptocurrencyId = "SolanaId",
+            cryptocurrency = "Solana"
+        ),
+        WalletItemModel(
+            id = "awdd",
+            name = "My Wallet 2",
+            address = "awawdaduhwidm",
+            cryptocurrencyId = "PepeId",
+            cryptocurrency = "Pepe"
+        )
+    )
+
+    private val uiState = WalletsUiState(
+        coins = cryptosUiState.cryptos,
+        wallets = wallets,
+        filteredWallets = wallets,
+        walletInput = WalletInputModel(
+            selectedCryptocurrency = cryptosUiState.cryptos?.firstOrNull(),
+            isCoinValid = true
+        )
+    )
 
     override val values: Sequence<WalletsUiState> = sequenceOf(
-        WalletsUiState(
-            coins = cryptosUiState.cryptos,
-            wallets = listOf(
-                WalletItemModel(
-                    id = "awdd",
-                    name = "My Wallet",
-                    address = "awodimhiuhiuhiuhiuhwidm",
-                    cryptocurrencyId = "SolanaId",
-                    cryptocurrency = "Solana"
-                ),
-                WalletItemModel(
-                    id = "awdd",
-                    name = "My Wallet 2",
-                    address = "awawdaduhwidm",
-                    cryptocurrencyId = "PepeId",
-                    cryptocurrency = "Pepe"
-                )
-            ),
-            walletInput = WalletInputModel(
-                selectedCryptocurrency = cryptosUiState.cryptos?.firstOrNull(),
-                isCoinValid = true
-            )
+        uiState,
+        uiState.copy(
+            coinsIsLoading = false,
+            walletsIsLoading = false
         )
     )
 }
