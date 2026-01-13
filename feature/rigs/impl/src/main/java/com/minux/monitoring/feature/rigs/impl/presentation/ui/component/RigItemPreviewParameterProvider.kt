@@ -15,7 +15,7 @@ internal class RigItemPreviewParameterProvider : PreviewParameterProvider<RigIte
         ),
         RigItemModel(
             id = "id1",
-            name = "Riggggggggggggggggggggggggggggggggggggg #2",
+            name = "Very very very very very very very very very long rig #2",
             isOnline = false,
             powerStatus = RigLifecycleStatusModel.Enabled,
             miningStatus = RigLifecycleStatusModel.Enabling
