@@ -12,10 +12,10 @@ internal class ProfileUiStatePreviewParameterProvider : PreviewParameterProvider
             profile = ProfileModel(
                 id = "",
                 login = "sample",
-                nickname = "cheburek",
+                nickname = "example",
                 registrationDate = "31.08.2023",
-                email = "cheburek@cheburek.com",
-                telegram = "@cheburek",
+                email = "example@example.com",
+                telegram = "@example",
                 key = null,
                 keyIsLoading = false,
                 emailConfirmed = false,
