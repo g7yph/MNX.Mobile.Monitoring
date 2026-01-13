@@ -2,7 +2,6 @@ package com.minux.monitoring.app.di
 
 import android.app.Application
 import com.minux.monitoring.core.network.api.HttpClient
-import com.minux.monitoring.core.network.api.WsClient
 import com.minux.monitoring.core.network.api.di.NetworkApi
 import com.minux.monitoring.core.network.api.session.SessionManager
 import com.minux.monitoring.core.network.impl.di.NetworkComponentHolder
@@ -15,13 +14,8 @@ import com.minux.monitoring.feature.cryptos.api.CryptosProvider
 import com.minux.monitoring.feature.cryptos.api.di.CryptosFeatureApi
 import com.minux.monitoring.feature.cryptos.impl.di.CryptosComponentHolder
 import com.minux.monitoring.feature.cryptos.impl.di.CryptosDependencies
-import com.minux.monitoring.feature.devices.impl.di.DevicesComponentHolder
-import com.minux.monitoring.feature.devices.impl.di.DevicesDependencies
 import com.minux.monitoring.feature.flightsheets.impl.di.FlightSheetsComponentHolder
 import com.minux.monitoring.feature.flightsheets.impl.di.FlightSheetsDependencies
-import com.minux.monitoring.feature.presets.api.PresetsFeatureMediator
-import com.minux.monitoring.feature.presets.impl.di.PresetsComponentHolder
-import com.minux.monitoring.feature.presets.impl.di.PresetsDependencies
 import com.minux.monitoring.feature.profile.api.ProfileInfoProvider
 import com.minux.monitoring.feature.profile.api.di.ProfileFeatureApi
 import com.minux.monitoring.feature.profile.impl.di.ProfileComponentHolder
@@ -181,31 +175,6 @@ internal object DaggerDi {
             }.dependencies
         }
 
-        DevicesComponentHolder.dependencyProvider = {
-            class DevicesDependencyHolder(
-                override val block: (BaseDependencyHolder<DevicesDependencies>, InjectorComposeApi, NetworkApi, NavigationApi) -> DevicesDependencies
-            ) : DependencyHolderWithThreeApi<DevicesDependencies, InjectorComposeApi, NetworkApi, NavigationApi>(
-                firstApi = InjectorComposeComponentHolder.fetchApi(),
-                secondApi = NetworkComponentHolder.fetchApi(),
-                thirdApi = NavigationComponentHolder.fetchApi()
-            )
-
-            DevicesDependencyHolder { dependencyHolder, injectorComposeApi, networkApi, navigationApi ->
-                object : DevicesDependencies {
-                    override val binderBaseApi: BinderBaseApi
-                        get() = injectorComposeApi.binderBaseApi
-                    override val httpClient: HttpClient
-                        get() = networkApi.httpClient
-                    override val wsClient: WsClient
-                        get() = networkApi.wsClient
-                    override val presetsFeatureMediator: PresetsFeatureMediator
-                        get() = navigationApi.presetsFeatureMediator
-                    override val dependencyHolder: BaseDependencyHolder<out BaseDependencies>
-                        get() = dependencyHolder
-                }
-            }.dependencies
-        }
-
         CryptosComponentHolder.dependencyProvider = {
             class CryptosDependencyHolder(
                 override val block: (BaseDependencyHolder<CryptosDependencies>, InjectorComposeApi, NetworkApi) -> CryptosDependencies
@@ -216,26 +185,6 @@ internal object DaggerDi {
 
             CryptosDependencyHolder { dependencyHolder, injectorComposeApi, networkApi ->
                 object : CryptosDependencies {
-                    override val binderBaseApi: BinderBaseApi
-                        get() = injectorComposeApi.binderBaseApi
-                    override val httpClient: HttpClient
-                        get() = networkApi.httpClient
-                    override val dependencyHolder: BaseDependencyHolder<out BaseDependencies>
-                        get() = dependencyHolder
-                }
-            }.dependencies
-        }
-
-        PresetsComponentHolder.dependencyProvider = {
-            class PresetsDependencyHolder(
-                override val block: (BaseDependencyHolder<PresetsDependencies>, InjectorComposeApi, NetworkApi) -> PresetsDependencies
-            ) : DependencyHolderWithTwoApi<PresetsDependencies, InjectorComposeApi, NetworkApi>(
-                firstApi = InjectorComposeComponentHolder.fetchApi(),
-                secondApi = NetworkComponentHolder.fetchApi()
-            )
-
-            PresetsDependencyHolder { dependencyHolder, injectorComposeApi, networkApi ->
-                object : PresetsDependencies {
                     override val binderBaseApi: BinderBaseApi
                         get() = injectorComposeApi.binderBaseApi
                     override val httpClient: HttpClient

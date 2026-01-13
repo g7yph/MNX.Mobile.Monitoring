@@ -1,17 +1,17 @@
 package com.minux.monitoring.core.designsystem.component
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.minux.monitoring.core.designsystem.icon.MNXIcons
 import com.minux.monitoring.core.designsystem.theme.MNXTheme
 
 @Composable
@@ -31,7 +31,7 @@ fun MNXDialog(
 
                 IconButton(onClick = { onShowDialogChange(false) }) {
                     Icon(
-                        imageVector = Icons.Default.Close,
+                        painter = painterResource(id = MNXIcons.Close),
                         contentDescription = "Close",
                         tint = MaterialTheme.colorScheme.onPrimary
                     )

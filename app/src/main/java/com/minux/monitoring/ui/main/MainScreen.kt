@@ -77,19 +77,6 @@ private fun MainScreen(
         NavigationDrawerItemModel.Group(
             items = listOf(
                 NavigationDrawerItemModel.Single(
-                    route = MainFlowRoute.Devices.CPUs,
-                    title = "CPUs"
-                ),
-                NavigationDrawerItemModel.Single(
-                    route = MainFlowRoute.Devices.GPUs,
-                    title = "GPUs"
-                )
-            ),
-            title = "Devices"
-        ),
-        NavigationDrawerItemModel.Group(
-            items = listOf(
-                NavigationDrawerItemModel.Single(
                     route = MainFlowRoute.Mining.Cryptos,
                     title = "Cryptocurrencies"
                 ),
@@ -104,18 +91,9 @@ private fun MainScreen(
             ),
             title = "Mining"
         ),
-        NavigationDrawerItemModel.Group(
-            items = listOf(
-                NavigationDrawerItemModel.Single(
-                    route = MainFlowRoute.Configure.Presets,
-                    title = "Presets"
-                ),
-                NavigationDrawerItemModel.Single(
-                    route = MainFlowRoute.Configure.FlightSheets,
-                    title = "Flight Sheets"
-                )
-            ),
-            title = "Configure"
+        NavigationDrawerItemModel.Single(
+            route = MainFlowRoute.FlightSheets,
+            title = "Flight Sheets"
         )
     )
 

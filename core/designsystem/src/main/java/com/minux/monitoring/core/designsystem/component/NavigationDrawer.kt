@@ -177,8 +177,7 @@ fun MNXNavigationDrawerGroupItem(
 
         if (expanded) {
             LazyColumn(
-                modifier = Modifier
-                    .heightIn(max = 200.dp),
+                modifier = Modifier.heightIn(max = 400.dp),
                 content = items
             )
         }

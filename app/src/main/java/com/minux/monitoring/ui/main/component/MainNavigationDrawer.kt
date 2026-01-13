@@ -459,13 +459,13 @@ private fun BorderSides.getByPosition(index: Int, selectedIndex: Int): BorderSid
 }
 
 private fun BorderSides.getBySubPosition(index: Int, selectedIndex: Int, lastIndex: Int): BorderSides {
-    return when {
-        selectedIndex == NO_INDEX && index == 0 -> copy(
+    return when (selectedIndex) {
+        NO_INDEX if index == 0 -> copy(
             top = BorderSide.Top(1.dp),
             bottom = BorderSide.Bottom(1.dp)
         )
 
-        selectedIndex == NO_INDEX && index == lastIndex -> copy(bottom = null)
+        NO_INDEX if index == lastIndex -> copy(bottom = null)
 
         else -> getByPosition(
             index = index,
@@ -489,19 +489,6 @@ fun AppNavigationDrawerPreview() {
             NavigationDrawerItemModel.Group(
                 items = listOf(
                     NavigationDrawerItemModel.Single(
-                        route = MainFlowRoute.Devices.CPUs,
-                        title = "CPUs"
-                    ),
-                    NavigationDrawerItemModel.Single(
-                        route = MainFlowRoute.Devices.GPUs,
-                        title = "GPUs"
-                    )
-                ),
-                title = "Devices"
-            ),
-            NavigationDrawerItemModel.Group(
-                items = listOf(
-                    NavigationDrawerItemModel.Single(
                         route = MainFlowRoute.Mining.Cryptos,
                         title = "Cryptocurrencies"
                     ),
@@ -516,18 +503,9 @@ fun AppNavigationDrawerPreview() {
                 ),
                 title = "Mining"
             ),
-            NavigationDrawerItemModel.Group(
-                items = listOf(
-                    NavigationDrawerItemModel.Single(
-                        route = MainFlowRoute.Configure.Presets,
-                        title = "Presets"
-                    ),
-                    NavigationDrawerItemModel.Single(
-                        route = MainFlowRoute.Configure.FlightSheets,
-                        title = "Flight Sheets"
-                    )
-                ),
-                title = "Configure"
+            NavigationDrawerItemModel.Single(
+                route = MainFlowRoute.FlightSheets,
+                title = "Flight Sheets"
             )
         )
 
@@ -535,7 +513,7 @@ fun AppNavigationDrawerPreview() {
             drawerState = drawerState,
             profileOverviewModel = ProfileOverviewModel(
                 nicknameIsLoading = false,
-                nickname = "mnx"
+                nickname = "user"
             ),
             drawerItems = items,
             onProfileSettingsClick = {},

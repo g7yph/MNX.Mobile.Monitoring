@@ -9,6 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
@@ -141,12 +142,14 @@ private fun RigsScreenPreview(
     rigsUiState: RigsUiState
 ) {
     MNXTheme {
-        RigsScreen(
-            rigsUiState = rigsUiState,
-            onEvent = {},
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
-        )
+        Surface(color = MaterialTheme.colorScheme.background) {
+            RigsScreen(
+                rigsUiState = rigsUiState,
+                onEvent = {},
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp)
+            )
+        }
     }
 }

@@ -21,16 +21,6 @@ internal fun MainNavGraph(
                 .AddRigsScreen(entry = entry, onShowSnackBar = onShowSnackBar)
         }
 
-        composable<MainFlowRoute.Devices.CPUs> { entry ->
-            navigationApi.devicesFeatureMediator
-                .AddCpusScreen(entry = entry)
-        }
-
-        composable<MainFlowRoute.Devices.GPUs> { entry ->
-            navigationApi.devicesFeatureMediator
-                .AddGpuFlowScreen(entry = entry, onShowSnackBar = onShowSnackBar)
-        }
-
         composable<MainFlowRoute.Mining.Cryptos> { entry ->
             navigationApi.cryptosFeatureMediator
                 .AddCryptosScreen(entry = entry, onShowSnackBar = onShowSnackBar)
@@ -46,12 +36,7 @@ internal fun MainNavGraph(
                 .AddPoolsScreen(entry = entry, onShowSnackBar = onShowSnackBar)
         }
 
-        composable<MainFlowRoute.Configure.Presets> { entry ->
-            navigationApi.presetsFeatureMediator
-                .AddPresetsFlowScreen(entry = entry, onShowSnackBar = onShowSnackBar)
-        }
-
-        composable<MainFlowRoute.Configure.FlightSheets> { entry ->
+        composable<MainFlowRoute.FlightSheets> { entry ->
             navigationApi.flightSheetsFeatureMediator
                 .AddFlightSheetsFlowScreen(entry = entry, onShowSnackBar = onShowSnackBar)
         }

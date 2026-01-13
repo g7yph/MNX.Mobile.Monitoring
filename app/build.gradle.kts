@@ -44,14 +44,8 @@ dependencies {
     implementation(project(":feature:rigs:api"))
     implementation(project(":feature:rigs:impl"))
 
-    implementation(project(":feature:devices:api"))
-    implementation(project(":feature:devices:impl"))
-
     implementation(project(":feature:cryptos:api"))
     implementation(project(":feature:cryptos:impl"))
-
-    implementation(project(":feature:presets:api"))
-    implementation(project(":feature:presets:impl"))
 
     implementation(project(":feature:flightsheets:api"))
     implementation(project(":feature:flightsheets:impl"))
